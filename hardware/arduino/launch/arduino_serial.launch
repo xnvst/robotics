@@ -1,0 +1,11 @@
+<launch>
+
+    <!-- parameters -->
+    <arg name="arduino_port"   default="/dev/avidbots/arduino"/>
+
+    <node pkg="avidbots_arduino" type="avidbots_arduino_serial" name="avidbots_arduino_serial" output="screen">
+      <param name="arduino_port" value="$(arg arduino_port)"/>
+    </node>
+
+
+</launch>

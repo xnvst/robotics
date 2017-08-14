@@ -1,0 +1,18 @@
+<!-- launch ROBOTEQ
+
+  -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description" 	default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Robot Properties -->
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+
+    <!-- Load MCU settings -->   
+    <rosparam command="load" file="$(arg robot_description)/param/mcu_properties.yaml"/>    
+    
+    <node pkg="avidbots_mcu_driver" type="avidbots_mcu_driver" respawn="true" name="avidbots_mcu_driver" output="screen"/>	            
+    
+</launch>

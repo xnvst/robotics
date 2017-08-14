@@ -1,0 +1,15 @@
+<!-- launch Hourmeter node
+
+  -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description" 	default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Robot Properties -->
+    <rosparam command="load" file="$(arg robot_description)/param/hourmeter_properties.yaml"/>
+    
+    <node pkg="avidbots_hourmeter" type="avidbots_hourmeter" respawn="true" name="avidbots_hourmeter" output="screen"/>	            
+    
+</launch>

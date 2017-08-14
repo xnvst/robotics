@@ -1,0 +1,19 @@
+<!-- launch ROBOTEQ
+
+  -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description"   default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Motor controller settings -->   
+    <rosparam command="load" file="$(arg robot_description)/param/mc_properties.yaml"/>
+    <rosparam command="load" file="/etc/avidbots/customer_settings.yaml"/>
+
+    <!-- Load Robot Properties -->
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+
+    <node pkg="avidbots_mc_driver" type="mc_driver_node" respawn="true" name="avidbots_mc_driver" output="screen"/>	            
+    
+</launch>

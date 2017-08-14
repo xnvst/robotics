@@ -1,0 +1,15 @@
+<!-- launch ROBOTEQ
+
+  -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description" 	default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Robot Properties -->
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+    
+    <node pkg="avidbots_radio" type="avidbots_radio" respawn="true" name="avidbots_radio" output="screen"/>	            
+    
+</launch>

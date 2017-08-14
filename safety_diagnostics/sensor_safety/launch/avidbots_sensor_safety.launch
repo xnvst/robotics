@@ -1,0 +1,18 @@
+<!-- launch ROBOTEQ
+
+  -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description" 	default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Robot Properties -->
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+   
+    <rosparam command="load" file="/etc/avidbots/calibration.yaml"/>
+    <rosparam command="load"        file="$(arg robot_description)/param/sensor_safety_properties.yaml"/>
+
+    <node pkg="avidbots_sensor_safety" type="avidbots_sensor_safety" respawn="true" name="avidbots_sensor_safety" output="screen"/>	            
+    
+</launch>

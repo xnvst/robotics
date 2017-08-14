@@ -1,0 +1,16 @@
+<!-- launch Simulated Free Wheel -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description"   default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Robot properties -->   
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+    <include file="$(find avidbots_base)/launch/free_wheel.launch">
+      <arg name="robot_description" value="$(arg robot_description)"/>
+    </include>
+    
+    <node pkg="avidbots_mc_driver" type="simulated_free_wheel" name="simulated_free_wheel" output="screen"/>	            
+    
+</launch>

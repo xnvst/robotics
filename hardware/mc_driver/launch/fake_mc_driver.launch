@@ -1,0 +1,16 @@
+<!-- launch Fake MC Driver -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description"   default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Motor controller settings -->   
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>    
+
+    <!-- Load MC settings -->   
+    <rosparam command="load" file="$(arg robot_description)/param/mc_properties.yaml"/>    
+
+    <node name="fake_mc_driver" pkg="avidbots_mc_driver" type="fake_mc_driver.py" output="screen" />
+    
+</launch>

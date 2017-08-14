@@ -1,0 +1,23 @@
+<launch>
+  
+  <!-- This launches the avidbots teleop joystick node -->
+  
+  <arg name="robot_description" 	default="$(find avidbots_description)/wheely"/>
+
+  <!-- Load teleop joystick settings -->
+  <rosparam command="load" file="$(arg robot_description)/param/joystick_properties.yaml"/>
+  <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+
+  <node pkg="avidbots_teleop_joy" type="avidbots_teleop_joy" name="avidbots_teleop_joystick" output="screen">
+    <!-- remap from cmd_vel to vel_muxer topic -->
+    <remap from="/avidbots_teleop_joystick/cmd_vel" to="/cmd_vel_mux/input/teleop"/>
+  </node>
+
+	<!-- This launches the joystick driver and publishes joystick data  -->
+
+  <node pkg="joy" type="joy_node" name="joystick" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+  </node>
+
+  
+</launch>

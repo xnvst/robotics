@@ -1,0 +1,27 @@
+<launch>
+  <!-- Safety Monitor Launch -->
+
+  <arg name="robot_description"   default="$(find avidbots_description)/shiny"/>
+
+  <arg name="is_simulation"       default="false"/>
+
+  <arg name="robot_costmap_param_dir" default="$(arg robot_description)/param/costmap"/>
+
+  <!-- Load SM properties -->
+  <group unless="$(arg is_simulation)">
+    <rosparam command="load"      file="$(arg robot_description)/param/sm_properties.yaml"/>
+    <rosparam command="load"      file="/etc/avidbots/customer_settings.yaml"/>
+  </group>
+  <group if="$(arg is_simulation)">
+    <rosparam command="load"      file="$(arg robot_description)/param/sim/sm_sim_properties.yaml"/>
+  </group>
+
+  <!-- Load Motor controller settings -->
+  <rosparam command="load"        file="$(arg robot_description)/param/mc_properties.yaml"/>
+
+  <rosparam command="load"        file="$(arg robot_description)/param/robot_properties.yaml"/>
+  <rosparam command="load"        file="$(arg robot_costmap_param_dir)/costmap_common_params.yaml"/>
+
+  <node pkg="avidbots_safety_monitor" type="safety_monitor_node" respawn="true" name="safety_monitor_node" output="screen"/>
+  
+</launch>

@@ -1,0 +1,15 @@
+<!-- launch ROBOTEQ
+
+  -->
+
+<launch>
+
+    <!-- parameters -->
+    <arg name="robot_description" 	default="$(find avidbots_description)/shiny"/>
+    
+    <!-- Load Robot Properties -->
+    <rosparam command="load" file="$(arg robot_description)/param/robot_properties.yaml"/>
+    
+    <node pkg="avidbots_diagnostics" type="avidbots_diagnostics" respawn="true" name="avidbots_diagnostics" output="screen"/>	            
+    
+</launch>

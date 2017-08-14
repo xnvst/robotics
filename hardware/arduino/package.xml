@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <name>avidbots_arduino</name>
+  <version>0.0.0</version>
+  <description>The avidbots_arduino package</description>
+
+  <maintainer email="pablo@avidbots.com">avidbot</maintainer>
+
+
+  <license>Avidbots</license>
+
+  <build_depend>avidbots_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>avidbots_library</build_depend>
+  <build_depend>roslint</build_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>avidbots_msgs</run_depend>
+  <run_depend>avidbots_library</run_depend>
+
+  <export>
+
+
+  </export>
+</package>

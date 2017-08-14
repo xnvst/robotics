@@ -1,0 +1,9 @@
+<launch>
+  <arg name="robot_description"   default="$(find avidbots_description)/shiny2-24"/>
+  <arg name="robot_costmap_param_dir" default="$(arg robot_description)/param/costmap"/>
+
+	<rosparam file="$(arg robot_description)/param/robot_properties.yaml"/>
+  <rosparam file="$(arg robot_costmap_param_dir)/costmap_common_params.yaml"/>
+	<rosparam file="$(find avidbots_description)/shiny/param/sm_properties.yaml"/>
+  <test test-name="safety_zone_test" pkg="avidbots_safety_monitor" type="safety_zone_test" />
+</launch>
