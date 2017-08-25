@@ -67,11 +67,12 @@ M = 200; % number of particles
 
 P = repmat(myPose(:,1), [1, M]);
 
-thr = ceil(3.5/5*size(scanAngles,1)); % set the score threshold as 70%
+thr = ceil(2.5/5*size(scanAngles,1)); % set the score threshold as 70%
 
 for j = 2:N
     maxscore = 0;
-    while maxscore < thr
+	score_cnt = 0;
+    while maxscore < thr && score_cnt < 100
         Q=P+(randn(size(P,2),3)*sig)'; % particles movement
         score = zeros(size(Q,2), 1); % scores
         for k = 1:size(Q,2) % calculate score for each particle
@@ -81,10 +82,24 @@ for j = 2:N
             score(k) = size( map( map (sub2ind(size(map), occ_y(ids), occ_x(ids)) ) > unknown ), 1);
         end
         [maxscore, index] = max(score); % select particle with maximum score
+		disp "j";
+		disp(j);
+		disp "N";
+		disp(N);
+		disp "maxscore";
+		disp(maxscore);
+		disp "thr";
+		disp(thr);
+		score_cnt = score_cnt + 1;
     end
+	
     myPose(:,j) = Q(:,index); % set pose(j) as the optimal particle
 
-    Q = Q(:,score >= thr); % select particles with high score
+	if maxscore < thr
+		Q = Q(:,score >= maxscore);
+	else
+		Q = Q(:,score >= thr); % select particles with high score
+	end
     P = repmat(Q, 1, ceil(M/size(Q,2)) ); % regenerate particles
 end
 
